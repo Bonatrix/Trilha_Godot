@@ -1,23 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://dbekqfiq4gb0u"]
 
-[ext_resource type="Texture2D" uid="uid://c4jrqj3mppc31" path="res://Addons/Tiny Swords/Tiny Swords (Update 010)/Factions/Knights/Troops/Warrior/Purple/Warrior_Purple.png" id="1_wtcfe"]
+[ext_resource type="PackedScene" uid="uid://3rverjllfayr" path="res://Addons/Player/player.tscn" id="2_0e48y"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="WarriorPurple" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(470.5, 335)
-scale = Vector2(1.70313, 1.67708)
-texture = ExtResource("1_wtcfe")
-hframes = 6
-vframes = 8
-frame = 17
-
-[node name="WarriorPurple2" type="Sprite2D" parent="."]
-texture_filter = 1
-position = Vector2(783, 306)
-scale = Vector2(1.70313, 1.67708)
-texture = ExtResource("1_wtcfe")
-hframes = 6
-vframes = 8
-frame = 37
+[node name="Player" parent="." instance=ExtResource("2_0e48y")]
+position = Vector2(-350, -126)
