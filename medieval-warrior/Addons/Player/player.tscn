@@ -5,41 +5,39 @@
 [sub_resource type="GDScript" id="GDScript_oy2gw"]
 script/source = "extends CharacterBody2D
 
+@export var speed: float = 3
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-var is_running:  bool = false
+var is_running: bool = false
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed(\"ui_accept\"):
-		if is_running:
-			animation_player.play(\"parada\")
-			is_running = false
-		else:
-			animation_player.play(\"correr\")
-			is_running = true
+
+
+
+
+
+
+
+
+
+
+func _physics_process(delta: float) -> void:
+	var input_vector = Input.get_vector(\"mover_esquerda\", \"mover_direita\", \"mover_cima\", \"mover_baixo\")
+	var target_velocity = input_vector * speed * 100.0
+	velocity = lerp(velocity, target_velocity, 0.05)
+	
+	move_and_slide()
+			
+	if input_vector != Vector2.ZERO:
+		animation_player.play(\"run\")
+	
+	else:
+		animation_player.play(\"idle\")
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2hskf"]
 radius = 29.0
 height = 106.0
-
-[sub_resource type="Animation" id="Animation_oy2gw"]
-resource_name = "parada"
-length = 0.6
-loop_mode = 1
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0840861, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 0), Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(1, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_lish8"]
 length = 0.001
@@ -74,6 +72,24 @@ tracks/0/keys = {
 "values": [Vector2i(0, 1), Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_oy2gw"]
+resource_name = "parada"
+length = 0.6
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0840861, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0vsvq"]
 _data = {
 &"RESET": SubResource("Animation_lish8"),
@@ -82,12 +98,12 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
-position = Vector2(276, 243)
+position = Vector2(217, 270)
 script = SubResource("GDScript_oy2gw")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(1, -43)
+position = Vector2(5, -41)
 scale = Vector2(1.70313, 1.67708)
 texture = ExtResource("1_otwkg")
 hframes = 6
@@ -97,10 +113,6 @@ vframes = 8
 position = Vector2(2, -39)
 shape = SubResource("CapsuleShape2D_2hskf")
 debug_color = Color(2.16588e-06, 0.480195, 0.561904, 0.42)
-
-[node name="WarriorPurple" type="Sprite2D" parent="."]
-position = Vector2(920, -121)
-texture = ExtResource("1_otwkg")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
