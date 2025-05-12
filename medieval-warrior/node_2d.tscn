@@ -6,3 +6,4 @@
 
 [node name="Player" parent="." instance=ExtResource("2_0e48y")]
 position = Vector2(347, 273)
+speed = null

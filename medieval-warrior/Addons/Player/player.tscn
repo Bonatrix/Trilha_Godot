@@ -7,32 +7,54 @@ script/source = "extends CharacterBody2D
 
 @export var speed: float = 3
 
+@onready var sprite: Sprite2D = $Sprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var is_running: bool = false
+var is_attacking: bool = false
+var attack_cooldown: float = 0.0
 
-
-
-
-
-
-
-
-
-
+func  _process(delta: float) -> void:
+	is_attacking:
+		attack_cooldown -= delta
+		if attack_cooldown <= 0.0:
+			is_attacking = false
+			animation_player.play(\"parada\")
 
 func _physics_process(delta: float) -> void:
 	var input_vector = Input.get_vector(\"mover_esquerda\", \"mover_direita\", \"mover_cima\", \"mover_baixo\")
+	
+	var deadzone = 0.15
+	if abs(input_vector.x) < 0.15:
+		input_vector.x = 0.0
+	if abs(input_vector.y) < 0.15:
+		input_vector.y = 0.0
+
 	var target_velocity = input_vector * speed * 100.0
+	if is_attaking:
+		target_velocity *= 0.25
 	velocity = lerp(velocity, target_velocity, 0.05)
-	
 	move_and_slide()
-			
-	if input_vector != Vector2.ZERO:
-		animation_player.play(\"run\")
+
+	var was_running = is_running
+	is_running = not input_vector.is_zero_approx()
 	
-	else:
-		animation_player.play(\"idle\")
+	is not is_attacking:
+		if was_running != is_running:
+			if is_running:
+				animation_player.play(\"run\")
+			else:
+				animation_player.play(\"idle\")
+
+	if Input.is_action_just_pressed(\"ataue\"):
+		_attak()
+
+func _attack() -> void:
+	if is_attacking:
+		return
+	animation_player.play(\"\")
+	attack_cooldown = 0.6
+	is_attacking = true
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2hskf"]
@@ -41,6 +63,7 @@ height = 106.0
 
 [sub_resource type="Animation" id="Animation_lish8"]
 length = 0.001
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -100,6 +123,7 @@ _data = {
 [node name="Player" type="CharacterBody2D"]
 position = Vector2(217, 270)
 script = SubResource("GDScript_oy2gw")
+speed = null
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
