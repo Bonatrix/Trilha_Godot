@@ -7,6 +7,19 @@
 metadata/_edit_vertical_guides_ = [-144.0]
 
 [node name="player" parent="." instance=ExtResource("1_0e48y")]
+position = Vector2(145, 152)
 
 [node name="Pawns" parent="." instance=ExtResource("2_0e48y")]
-position = Vector2(276, 303)
+position = Vector2(307, 343)
+
+[node name="Pawns2" parent="." instance=ExtResource("2_0e48y")]
+position = Vector2(471, 285)
+
+[node name="Pawns3" parent="." instance=ExtResource("2_0e48y")]
+position = Vector2(101, 359)
+
+[node name="Pawns4" parent="." instance=ExtResource("2_0e48y")]
+position = Vector2(445, 441)
+
+[node name="Pawns5" parent="." instance=ExtResource("2_0e48y")]
+position = Vector2(288, 507)

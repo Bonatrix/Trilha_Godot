@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://djslpxfqme51s"]
+[gd_scene load_steps=11 format=3 uid="uid://djslpxfqme51s"]
 
 [ext_resource type="Texture2D" uid="uid://tagcpf8ps2eo" path="res://addons/Tiny Swords/Factions/Knights/Troops/Pawn/Blue/Pawn_Blue.png" id="1_8aevs"]
+[ext_resource type="Script" uid="uid://7s36i654q66w" path="res://ENEMIES/Comportamentos/seguir.gd" id="1_j4whv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_j4whv"]
 radius = 17.0
@@ -58,6 +59,7 @@ animations = [{
 
 [node name="Pawns" type="CharacterBody2D"]
 motion_mode = 1
+script = ExtResource("1_j4whv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-4, -77)
