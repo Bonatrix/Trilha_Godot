@@ -61,7 +61,6 @@ animations = [{
 [node name="Pawns" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_j4whv")
-health = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-4, -77)
@@ -76,4 +75,3 @@ frame_progress = 0.214976
 script = ExtResource("3_ufe8l")
 
 [node name="Seguir" type="Node" parent="."]
-script = ExtResource("3_ufe8l")

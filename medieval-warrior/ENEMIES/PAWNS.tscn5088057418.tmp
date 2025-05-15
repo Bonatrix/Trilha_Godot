@@ -61,7 +61,6 @@ animations = [{
 [node name="Pawns" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_j4whv")
-health = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-4, -77)
