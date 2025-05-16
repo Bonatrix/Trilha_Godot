@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dv35555e6bb12"]
+[gd_scene load_steps=16 format=3 uid="uid://dv35555e6bb12"]
 
 [ext_resource type="Texture2D" uid="uid://c4jrqj3mppc31" path="res://addons/Tiny Swords/Factions/Knights/Troops/Warrior/Purple/Warrior_Purple.png" id="1_liy72"]
 
@@ -6,6 +6,7 @@
 script/source = "extends CharacterBody2D
 
 @export var speed: float = 3
+@export var suword_damage: int = 2
 
 @onready var sprite: Sprite2D = $sprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -105,8 +106,12 @@ func attack() -> void:
 	
 	#marcar ataque
 	is_attacking = true	
+	deal_damage_to_enemies()		
 			
-			
+func deal_damage_to_enemies() -> void:
+	var Enemies = get_tree().get_nodes_in_group(\"Enemies\")
+	for enemy in Enemies:
+		enemy.damage(suword_damage)
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oul6g"]
@@ -114,7 +119,7 @@ radius = 18.0
 height = 60.0
 
 [sub_resource type="Animation" id="Animation_g1dw6"]
-length = 0.001
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -170,10 +175,43 @@ tracks/0/path = NodePath("sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.5, 0.6, 1.4, 2, 2.8, 3.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [12, 13, 14, 15, 16, 17]
+"values": [12, 13, 13, 14, 16, 17, 15]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
 }
 
 [sub_resource type="Animation" id="Animation_hg6s5"]
@@ -302,8 +340,11 @@ _data = {
 &"run": SubResource("Animation_qjkh3")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_oul6g"]
+radius = 78.6448
+
 [node name="player" type="CharacterBody2D"]
-position = Vector2(120, 117)
+position = Vector2(649, 294)
 motion_mode = 1
 script = SubResource("GDScript_oul6g")
 
@@ -315,7 +356,7 @@ vframes = 8
 frame = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -27)
+position = Vector2(-6, -31)
 shape = SubResource("CapsuleShape2D_oul6g")
 debug_color = Color(0, 0.6, 0.701961, 0.0745098)
 
@@ -323,3 +364,9 @@ debug_color = Color(0, 0.6, 0.701961, 0.0745098)
 libraries = {
 &"": SubResource("AnimationLibrary_g6k8r")
 }
+
+[node name="Sword_Area" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword_Area"]
+position = Vector2(-9, -33)
+shape = SubResource("CircleShape2D_oul6g")

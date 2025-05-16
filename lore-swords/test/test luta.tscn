@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2ix0r5jn2pjx"]
+
+[ext_resource type="PackedScene" uid="uid://tq5jxap46edg" path="res://enemies/pawns.tscn" id="1_kg0kj"]
+[ext_resource type="PackedScene" uid="uid://dv35555e6bb12" path="res://player/player.tscn" id="2_orxvm"]
+
+[node name="TestLuta" type="Node2D"]
+
+[node name="Pawns" parent="." instance=ExtResource("1_kg0kj")]
+position = Vector2(11, 202)
+
+[node name="player" parent="." instance=ExtResource("2_orxvm")]
+visible = false
+position = Vector2(1011, 244)
+speed = 3.0
+suword_damage = 2
