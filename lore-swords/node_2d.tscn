@@ -3,21 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://dv35555e6bb12" path="res://player/player.tscn" id="1_0e48y"]
 [ext_resource type="PackedScene" uid="uid://tq5jxap46edg" path="res://enemies/pawns.tscn" id="2_0e48y"]
 
-[node name="Node2D" type="Node2D" groups=["Enemies"]]
-scale = Vector2(0.998342, 1.02639)
+[node name="Node2D" type="Node2D"]
 
 [node name="player" parent="." instance=ExtResource("1_0e48y")]
-speed = 3.0
-suword_damage = 2
 
 [node name="Pawns" parent="." instance=ExtResource("2_0e48y")]
-position = Vector2(706, 537)
-
-[node name="Pawns2" parent="." instance=ExtResource("2_0e48y")]
-position = Vector2(976, 303)
-
-[node name="Pawns3" parent="." instance=ExtResource("2_0e48y")]
-position = Vector2(901, 486)
-
-[node name="Pawns4" parent="." instance=ExtResource("2_0e48y")]
-position = Vector2(1011, 568)
+position = Vector2(1024, 395)

@@ -6,8 +6,3 @@ extends Node2D
 func damage(amount: int) -> void:
 	health -= amount
 	print("inimigo atingido",amount, ". Avida total é", health )
-
-	
-	
-	
-	
