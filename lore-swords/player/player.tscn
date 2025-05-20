@@ -10,7 +10,7 @@ script/source = "extends CharacterBody2D
 
 @onready var sprite: Sprite2D = $sprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var sword_area: Area2D = $SwordArea
+@onready var sword_area: Area2D = $Sword_Area
  
 var input_vector: Vector2 = Vector2(0,0)
 var is_running: bool = false 
@@ -32,7 +32,7 @@ func _process(delta: float)-> void:
 	#processar animação e rotação do sprite
 	play_run_idle_animation()
 	if not is_attacking:
-			rotate_sprite()	
+		rotate_sprite()	
 		
 func _physics_process(delta: float) -> void:
 
@@ -118,12 +118,18 @@ func deal_damage_to_enemies() -> void:
 				attack_direction = Vector2.LEFT
 			else:
 				attack_direction = Vector2.RIGHT
-				var dot_product = direction_to_enemy.dot(attack_direction)
-				if dot_product >= 0.3:					
-					enemy.damage(suword_damage)
+			var dot_product = direction_to_enemy.dot(attack_direction)
+			if dot_product >= 0.3:
+				enemy.damage(suword_damage)
 			
-			
-		
+
+	#var enemies = get_tree().get_nodes_in_group(\"enemyes\")
+	#for enemy in enemies:
+	#	enemy.damage(suword_damage)
+		#pass
+	#print(\"Enemies\", enemies.size())
+	#pass			
+			#
 "
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oul6g"]
@@ -404,7 +410,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oul6g"]
-radius = 93.0054
+radius = 81.0062
 
 [node name="player" type="CharacterBody2D"]
 position = Vector2(120, 117)
@@ -428,10 +434,9 @@ libraries = {
 &"": SubResource("AnimationLibrary_g6k8r")
 }
 
-[node name="SwordArea" type="Area2D" parent="."]
+[node name="Sword_Area" type="Area2D" parent="."]
 position = Vector2(0, -27)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword_Area"]
 position = Vector2(4, 7)
 shape = SubResource("CircleShape2D_oul6g")
-debug_color = Color(0.643137, 0.521569, 0.164706, 0)
