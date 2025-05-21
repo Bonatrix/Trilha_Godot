@@ -1,0 +1,79 @@
+[gd_scene load_steps=13 format=3 uid="uid://dn1p123kwumgv"]
+
+[ext_resource type="Script" uid="uid://bxwdxw43eov6c" path="res://enemies/enemy.gd" id="1_sdldi"]
+[ext_resource type="PackedScene" uid="uid://dqife342ned0b" path="res://misc/sckull.tscn" id="2_vt7qe"]
+[ext_resource type="Script" uid="uid://jdtpfpdne5vk" path="res://enemies/behavior/follow.gd" id="4_llndt"]
+[ext_resource type="Texture2D" uid="uid://d2x0kicdu8oxh" path="res://addons/Tiny Swords/Resources/Sheep/HappySheep_Bouncing.png" id="5_nggoo"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u1bkt"]
+radius = 23.0
+height = 64.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdldi"]
+atlas = ExtResource("5_nggoo")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vt7qe"]
+atlas = ExtResource("5_nggoo")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8b8qb"]
+atlas = ExtResource("5_nggoo")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_llndt"]
+atlas = ExtResource("5_nggoo")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nggoo"]
+atlas = ExtResource("5_nggoo")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xihfb"]
+atlas = ExtResource("5_nggoo")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gokgo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdldi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vt7qe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8b8qb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_llndt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nggoo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xihfb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Ovelha Sheep" type="CharacterBody2D" groups=["enemyes"]]
+scale = Vector2(1, 1.2)
+motion_mode = 1
+script = ExtResource("1_sdldi")
+death_prefab = ExtResource("2_vt7qe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("CapsuleShape2D_u1bkt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 11)
+sprite_frames = SubResource("SpriteFrames_gokgo")
+autoplay = "default"
+frame_progress = 0.774148
+
+[node name="follow" type="Node" parent="."]
+script = ExtResource("4_llndt")
