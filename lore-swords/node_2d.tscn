@@ -22,13 +22,13 @@ position = Vector2(901, 486)
 position = Vector2(1011, 568)
 
 [node name="Ovelha Sheep" parent="." instance=ExtResource("3_epypp")]
-position = Vector2(317, 441)
+position = Vector2(863, 295)
 
 [node name="Ovelha Sheep2" parent="." instance=ExtResource("3_epypp")]
-position = Vector2(150, 495)
+position = Vector2(816, 427)
 
 [node name="Ovelha Sheep3" parent="." instance=ExtResource("3_epypp")]
-position = Vector2(216, 410)
+position = Vector2(746, 428)
 
 [node name="Goblin" parent="." instance=ExtResource("4_0hol4")]
 position = Vector2(1070, 74)

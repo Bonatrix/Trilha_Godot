@@ -1,8 +1,8 @@
 [gd_scene load_steps=13 format=3 uid="uid://dn1p123kwumgv"]
 
 [ext_resource type="Script" uid="uid://bxwdxw43eov6c" path="res://enemies/enemy.gd" id="1_sdldi"]
-[ext_resource type="PackedScene" uid="uid://dqife342ned0b" path="res://misc/sckull.tscn" id="2_vt7qe"]
 [ext_resource type="Script" uid="uid://jdtpfpdne5vk" path="res://enemies/behavior/follow.gd" id="4_llndt"]
+[ext_resource type="PackedScene" uid="uid://bry5q75ieaago" path="res://Life/Meat.tscn" id="4_u1bkt"]
 [ext_resource type="Texture2D" uid="uid://d2x0kicdu8oxh" path="res://addons/Tiny Swords/Resources/Sheep/HappySheep_Bouncing.png" id="5_nggoo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u1bkt"]
@@ -63,7 +63,7 @@ animations = [{
 scale = Vector2(1, 1.2)
 motion_mode = 1
 script = ExtResource("1_sdldi")
-death_prefab = ExtResource("2_vt7qe")
+death_prefab = ExtResource("4_u1bkt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3)
@@ -77,3 +77,6 @@ frame_progress = 0.774148
 
 [node name="follow" type="Node" parent="."]
 script = ExtResource("4_llndt")
+
+[node name="Meat" parent="." instance=ExtResource("4_u1bkt")]
+position = Vector2(645, 321.667)
