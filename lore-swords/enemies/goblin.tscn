@@ -80,3 +80,7 @@ frame_progress = 0.0666513
 [node name="follow" type="Node" parent="."]
 script = ExtResource("4_0o8a8")
 speed = 0.8
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
