@@ -1,16 +1,18 @@
+class_name Player
 extends CharacterBody2D
 
 @export var speed: float = 3
 @export var suword_damage: int = 2
-
 @export var health: int = 100
+
 @export var max_health: int = 100
+
 @export var death_prefab: PackedScene
 
 @onready var sprite: Sprite2D = $sprite
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var sword_area: Area2D = $Sword_Area
-@onready var Hitbox_area: Area2D = $HitboxArea
+@onready var sword_area: Area2D = $SwordArea
+@onready var hitbox_area: Area2D = $HitboxArea
  
 var input_vector: Vector2 = Vector2(0,0)
 var is_running: bool = false 
@@ -18,6 +20,7 @@ var was_running: bool = false
 var is_attacking: bool = false
 var attack_cooldown: float = 0.0
 var hitbox_cooldown: float = 0.0
+
 
 func _process(delta: float)-> void:
 	GameManager.player_position = position
@@ -34,7 +37,9 @@ func _process(delta: float)-> void:
 	play_run_idle_animation()
 	if not is_attacking:
 		rotate_sprite()	
-	update_hitbox_detection(delta)
+		
+	# processa dano
+	update_hitbox_detection(delta)	
 		
 func _physics_process(delta: float) -> void:
 
@@ -108,7 +113,8 @@ func attack() -> void:
 	#marcar ataque
 	is_attacking = true	
 
-	
+
+
 func deal_damage_to_enemies() -> void:
 	var bodies = sword_area.get_overlapping_bodies()
 	for body in bodies:
@@ -119,55 +125,42 @@ func deal_damage_to_enemies() -> void:
 			if sprite.flip_h:
 				attack_direction = Vector2.LEFT
 			else:
-				attack_direction = Vector2.RIGHT
-			var dot_product = direction_to_enemy.dot(attack_direction)
-			if dot_product >= 0.3:
+				attack_direction = Vector2.RIGHT 
+			var dot_product  = direction_to_enemy.dot(attack_direction)		
+			if dot_product >= 0.3:	
 				enemy.damage(suword_damage)
 				
-				
-			
-
-	#var enemies = get_tree().get_nodes_in_group("enemyes")
-	#for enemy in enemies:
-	#	enemy.damage(suword_damage)
-		#pass
-	#print("Enemies", enemies.size())
-	#pass			
-			#
-func update_hitbox_detection (delta: float) -> void:
-	#tempo para não receber danos
-	hitbox_cooldown -= delta
+func update_hitbox_detection(delta: float) -> void:
+	#Tempo para não receber dados 
+	hitbox_cooldown -= delta 
 	if hitbox_cooldown > 0: return
 	
-	#frequência
+	#Frequência
 	hitbox_cooldown = 0.5
-	
-	
-	
+
 	#detectar inimigos
-	var bodies = sword_area.get_overlapping_bodies()
+	var bodies = hitbox_area.get_overlapping_bodies()
 	for body in bodies:
 		if body.is_in_group("enemyes"):
 			var enemy: Enemy = body
 			var damage_amount = 1
 			damage(damage_amount)
-	
-		
+							
 func damage(amount: int) -> void:
 	if health <=0: return
 	
 	health -= amount
-	print("Player atingido",amount, "A vida total é", health )
+	print("Player atingido", amount, ". Avida total é", health )
 	
-	
+	#Receber dano
 	modulate = Color.RED
 	var tween = create_tween()
 	tween.set_ease(Tween.EASE_IN)
 	tween.set_trans(Tween.TRANS_QUINT)
 	tween.tween_property(self, "modulate", Color.WHITE, 0.3)
 	
-	
-	if health<= 0:
+	# transição de inimigo morto
+	if health <= 0:
 		die()
 		
 func die() -> void:
@@ -176,13 +169,14 @@ func die() -> void:
 		death_object.position = position
 		get_parent().add_child(death_object)
 		print("Player morreu")	
-		queue_free()	
+		queue_free()			
 		
 func heal(amount: int) -> int:
-	health += amount 
+	health += amount
 	if health > max_health:
 		health = max_health
+		print("Player recebeu cura",amount,"A Vida agora é",health,max_health)
 	return health
-				
-
-						
+		
+				 			
+		
