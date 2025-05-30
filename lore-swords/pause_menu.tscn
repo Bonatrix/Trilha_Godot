@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://be4yswua50fvy"]
+
+[sub_resource type="Theme" id="Theme_wyi4u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wyi4u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hdmo1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nwcfo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_05uyy"]
+
+[sub_resource type="Theme" id="Theme_p81d2"]
+Button/colors/font_color = Color(0.877108, 0.923632, 0.25571, 1)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.94902, 0.317647, 0.109804, 1)
+Button/colors/font_pressed_color = Color(1, 0.117647, 0.0588235, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/styles/focus = SubResource("StyleBoxEmpty_wyi4u")
+Button/styles/hover = SubResource("StyleBoxEmpty_hdmo1")
+Button/styles/normal = SubResource("StyleBoxEmpty_nwcfo")
+Button/styles/pressed = SubResource("StyleBoxEmpty_05uyy")
+
+[sub_resource type="Theme" id="Theme_hdmo1"]
+Button/colors/font_color = Color(0.522744, 0.971263, 0.880447, 1)
+Button/colors/font_hover_color = Color(0.823534, 0.533315, 0.280471, 1)
+
+[node name="Pause_MENU" type="CanvasLayer"]
+
+[node name="BG" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_wyi4u")
+color = Color(0, 0, 0, 0.235294)
+
+[node name="menu_houder" type="VBoxContainer" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -33.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Resume" type="Button" parent="menu_houder"]
+layout_mode = 2
+theme = SubResource("Theme_p81d2")
+text = "RESUME"
+
+[node name="quit_game" type="Button" parent="menu_houder"]
+layout_mode = 2
+theme = SubResource("Theme_hdmo1")
+text = "QUIT GAME"
