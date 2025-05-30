@@ -157,7 +157,7 @@ layout_mode = 2
 position = Vector2(304, 329)
 sprite_frames = SubResource("SpriteFrames_iqepy")
 autoplay = "default"
-frame_progress = 0.464871
+frame_progress = 0.201881
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
 position = Vector2(842, 337)

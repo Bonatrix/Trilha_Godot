@@ -1,4 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://be4yswua50fvy"]
+[gd_scene load_steps=9 format=3 uid="uid://be4yswua50fvy"]
+
+[ext_resource type="Script" uid="uid://bmghfa35kwvb3" path="res://pause_menu.gd" id="1_hdmo1"]
 
 [sub_resource type="Theme" id="Theme_wyi4u"]
 
@@ -26,6 +28,7 @@ Button/colors/font_color = Color(0.522744, 0.971263, 0.880447, 1)
 Button/colors/font_hover_color = Color(0.823534, 0.533315, 0.280471, 1)
 
 [node name="Pause_MENU" type="CanvasLayer"]
+script = ExtResource("1_hdmo1")
 
 [node name="BG" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -55,3 +58,6 @@ text = "RESUME"
 layout_mode = 2
 theme = SubResource("Theme_hdmo1")
 text = "QUIT GAME"
+
+[connection signal="pressed" from="menu_houder/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="menu_houder/quit_game" to="." method="_on_quit_game_pressed"]
