@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://duy0wsbhojx6o"]
+[gd_scene load_steps=16 format=3 uid="uid://duy0wsbhojx6o"]
 
 [ext_resource type="PackedScene" uid="uid://n81x6vlpyroj" path="res://player/player.tscn" id="1_0e48y"]
 [ext_resource type="PackedScene" uid="uid://be4yswua50fvy" path="res://pause_menu.tscn" id="1_4d7sh"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://btrnxha8bll0t" path="res://enemies/sheep.tscn" id="3_epypp"]
 [ext_resource type="PackedScene" uid="uid://0m7f2jmoq0xe" path="res://enemies/goblin.tscn" id="4_0hol4"]
 [ext_resource type="Texture2D" uid="uid://7608mw2nkx36" path="res://addons/Tiny Swords/Terrain/Bridge/Bridge_All.png" id="4_rj586"]
+[ext_resource type="Texture2D" uid="uid://c4jrqj3mppc31" path="res://addons/Tiny Swords/Factions/Knights/Troops/Warrior/Purple/Warrior_Purple.png" id="10_ir8iy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rj586"]
 texture = ExtResource("2_d21ai")
@@ -1121,6 +1122,9 @@ sources/0 = SubResource("TileSetAtlasSource_rj586")
 sources/1 = SubResource("TileSetAtlasSource_4d7sh")
 sources/2 = SubResource("TileSetAtlasSource_ir8iy")
 
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_hqns4"]
+frame_0/texture = ExtResource("10_ir8iy")
+
 [node name="Node2D" type="Node2D"]
 
 [node name="Pause_MENU" parent="." instance=ExtResource("1_4d7sh")]
@@ -1162,3 +1166,25 @@ position = Vector2(897, 298)
 
 [node name="Pawns4" parent="." instance=ExtResource("4_0hol4")]
 position = Vector2(910, 543)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ícones" type="HBoxContainer" parent="HUD/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Ícone_Personagem" type="TextureRect" parent="HUD/Control/ícones"]
+layout_mode = 2
+texture = SubResource("AnimatedTexture_hqns4")
+
+[node name="Vidas_Personagem" type="Label" parent="HUD/Control/ícones/Ícone_Personagem"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://be4yswua50fvy"]
+[gd_scene load_steps=11 format=3 uid="uid://be4yswua50fvy"]
 
 [ext_resource type="Script" uid="uid://bmghfa35kwvb3" path="res://pause_menu.gd" id="1_hdmo1"]
 
@@ -23,11 +23,18 @@ Button/styles/hover = SubResource("StyleBoxEmpty_hdmo1")
 Button/styles/normal = SubResource("StyleBoxEmpty_nwcfo")
 Button/styles/pressed = SubResource("StyleBoxEmpty_05uyy")
 
+[sub_resource type="InputEventAction" id="InputEventAction_hdmo1"]
+action = &"ui_cancel"
+
+[sub_resource type="Shortcut" id="Shortcut_nwcfo"]
+events = [SubResource("InputEventAction_hdmo1")]
+
 [sub_resource type="Theme" id="Theme_hdmo1"]
 Button/colors/font_color = Color(0.522744, 0.971263, 0.880447, 1)
 Button/colors/font_hover_color = Color(0.823534, 0.533315, 0.280471, 1)
 
 [node name="Pause_MENU" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_hdmo1")
 
 [node name="BG" type="ColorRect" parent="."]
@@ -52,6 +59,7 @@ grow_vertical = 2
 [node name="Resume" type="Button" parent="menu_houder"]
 layout_mode = 2
 theme = SubResource("Theme_p81d2")
+shortcut = SubResource("Shortcut_nwcfo")
 text = "RESUME"
 
 [node name="quit_game" type="Button" parent="menu_houder"]
